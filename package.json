@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "monster": "tsc && node dist/5e_tools_to_hardcodex_monsters.js"
+    "monster": "tsc && node --no-warnings dist/5e_tools_to_hardcodex_monsters.js"
   },
   "keywords": [
     "dnd"
