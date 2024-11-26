@@ -1,0 +1,3 @@
+[submodule "5etools-utils"]
+	path = 5etools-utils
+	url = https://github.com/TheGiddyLimit/5etools-utils

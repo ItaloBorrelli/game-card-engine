@@ -1,0 +1,22 @@
+{
+  "name": "dnd_helpers",
+  "version": "1.0.0",
+  "description": "Helpers for D&D, such as a mapping to create creature cards from 5e.tools monster JSON",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dnd"
+  ],
+  "author": "ItaloBorrelli",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "biome": "^0.3.3",
+    "json-schema-to-ts": "^3.1.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
