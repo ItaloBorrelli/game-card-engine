@@ -1,7 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/brew-fast/homebrew.json",
 	"_meta": {
-		"sources": [],
+		"sources": [{
+			"json": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-data/master/5etools/5etools-monsters.json",
+			"abbreviation": "5etools",
+			"full": "5th Edition System Reference Document"
+		}],
 		"dateAdded": 1732655078,
 		"dateLastModified": 1732655078,
 		"edition": "classic"

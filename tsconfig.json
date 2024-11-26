@@ -16,7 +16,11 @@
     "isolatedModules": true,
     "baseUrl": "./",
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "paths": {
+      "@/*": ["src/*"],
+      "@schema/*": ["5etools-utils/scheama/brew-fast/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

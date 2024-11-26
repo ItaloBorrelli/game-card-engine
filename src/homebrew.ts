@@ -18,6 +18,14 @@ export type CreatureType =
 export type AC = Array<{ ac: number; from?: string[] }> | Array<number>;
 export type HP = { average: number; formula: string };
 export type Speed = { walk?: number; burrow?: number; fly?: number };
+export type SaveThrow = {
+  str?: string;
+  dex?: string;
+  con?: string;
+  int?: string;
+  wis?: string;
+  cha?: string;
+};
 export type Monster = {
   name: string;
   size: Size[];
@@ -32,4 +40,5 @@ export type Monster = {
   int: number;
   wis: number;
   cha: number;
+  save: SaveThrow;
 };

@@ -1,6 +1,8 @@
 import type { Alignment, Monster, Size } from './homebrew';
 import homebrew from './homebrew.json' assert { type: 'json' };
 
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
 export const mapToHardcodex = (monster: Monster) => {
   const sizeMapping = (sizeAbbr: Size) =>
     ({
@@ -29,25 +31,27 @@ export const mapToHardcodex = (monster: Monster) => {
       A: 'Any',
     })[alignmentAbbr];
 
-  const { name, size, type, str, dex, con, int, wis, cha } = monster;
+  const { name, size, type, str, dex, con, int, wis, cha, alignment, save } =
+    monster;
 
-  const alignment = monster.alignment.map(alignmentMapping).join('');
+  const alignmentString = alignment.map(alignmentMapping).join('');
   const { ac, from: acType } =
     typeof monster.ac[0] === 'number' ? { ac: monster.ac[0] } : monster.ac[0];
   const { average: hpAverage, formula: hpFormula } = monster.hp;
   const speed = Object.entries(monster.speed)
     .map(([type, val]) =>
-      type === 'walk'
-        ? `${val} ft.`
-        : `${type.charAt(0).toUpperCase()}${type.substring(1)} ${val} ft.`
+      type === 'walk' ? `${val} ft.` : `${capitalize(type)} ${val} ft.`
     )
     .sort(([typeA], [typeB]) => typeA.localeCompare(typeB))
+    .join(', ');
+  const saveString = Object.entries(save)
+    .map(([key, val]) => `${capitalize(key)} ${val}`)
     .join(', ');
 
   const columns: Array<string | number> = [
     name,
     `${size} ${type}`,
-    alignment,
+    alignmentString,
     ac,
     acType ? acType[0] : '',
     hpAverage,
@@ -59,19 +63,9 @@ export const mapToHardcodex = (monster: Monster) => {
     int,
     wis,
     cha,
+    saveString,
   ];
   console.log(columns.join(';'));
   return columns;
-  // ac
-  // ac_type
-  // hp
-  // hp_formula
-  // speed
-  // str
-  // dex
-  // con
-  // int
-  // wis
-  // cha
 };
 mapToHardcodex(homebrew.monster[0] as Monster);
