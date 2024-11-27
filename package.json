@@ -26,9 +26,7 @@
   },
   "main": "index.js",
   "type": "module",
-  "keywords": [
-    "dnd"
-  ],
+  "keywords": ["dnd"],
   "author": "ItaloBorrelli",
   "license": "UNLICENSED"
 }
