@@ -1,6 +1,6 @@
 import type { Alignment, CRValues, Monster, Size, Ability } from './monster';
-import homebrew from './homebrew.json' assert { type: 'json' };
-
+import fs from 'fs';
+import path from 'path';
 const sizeMapping = (sizeAbbr: Size) =>
   ({
     F: 'Fine',
@@ -173,4 +173,15 @@ export const mapToHardcodex = (monster: Monster) => {
   console.log(columns.join(';'));
   return columns;
 };
-mapToHardcodex(homebrew.monster[0] as Monster);
+
+const filePath = process.argv[2];
+
+if (!filePath) {
+  console.error('Please provide a file path as an argument.');
+  process.exit(1);
+}
+
+const fileContent = fs.readFileSync(path.resolve(filePath), 'utf-8');
+const monsters = JSON.parse(fileContent);
+
+(monsters as Monster[]).forEach(mapToHardcodex);

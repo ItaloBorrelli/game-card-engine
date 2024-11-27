@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "monster": "tsc && node --no-warnings dist/5e_tools_to_hardcodex_monsters.js"
+    "hardcodex": "tsc && node dist/to_hardcodex.js $1"
   },
   "keywords": [
     "dnd"
@@ -14,6 +14,7 @@
   "author": "ItaloBorrelli",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/node": "^22.10.0",
     "biome": "^0.3.3",
     "typescript": "^5.7.2"
   },
