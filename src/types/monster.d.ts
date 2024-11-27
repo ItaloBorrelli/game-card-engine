@@ -73,6 +73,7 @@ type Action = Ability;
 type Legendary = Ability;
 
 export type Monster = {
+  cardSize?: 'S' | 'L';
   name: string;
   size: Size[];
   type: CreatureType;

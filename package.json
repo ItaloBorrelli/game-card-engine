@@ -1,24 +1,33 @@
 {
-  "name": "dnd_helpers",
-  "version": "1.0.0",
+  "name": "dnd_cards",
+  "version": "0.1.0",
   "description": "Helpers for D&D, such as a mapping to create creature cards from 5e.tools monster JSON",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "next": "15.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "biome": "^0.3.3"
+  },
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "hardcodex": "tsc && node dist/to_hardcodex.js $1"
-  },
   "keywords": [
     "dnd"
   ],
   "author": "ItaloBorrelli",
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "@types/node": "^22.10.0",
-    "biome": "^0.3.3",
-    "typescript": "^5.7.2"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
-  }
+  "license": "UNLICENSED"
 }
