@@ -1,6 +1,6 @@
 export type Size = 'F' | 'D' | 'T' | 'S' | 'M' | 'L' | 'H' | 'G' | 'C' | 'V';
 export type Alignment = 'L' | 'N' | 'NX' | 'NY' | 'C' | 'G' | 'E' | 'U' | 'A';
-export type CreatureType =
+type CreatureType =
   | 'aberration'
   | 'beast'
   | 'celestial'
@@ -15,10 +15,10 @@ export type CreatureType =
   | 'ooze'
   | 'plant'
   | 'undead';
-export type AC = Array<{ ac: number; from?: string[] }> | Array<number>;
-export type HP = { average: number; formula: string };
-export type Speed = { walk?: number; burrow?: number; fly?: number };
-export type SaveThrow = {
+type AC = Array<{ ac: number; from?: string[] }> | Array<number>;
+type HP = { average: number; formula: string };
+type Speed = { walk?: number; burrow?: number; fly?: number };
+type SaveThrow = {
   str?: string;
   dex?: string;
   con?: string;
@@ -26,7 +26,7 @@ export type SaveThrow = {
   wis?: string;
   cha?: string;
 };
-export type DamageType =
+type DamageType =
   | 'acid'
   | 'bludgeoning'
   | 'cold'
@@ -40,7 +40,7 @@ export type DamageType =
   | 'radiant'
   | 'slashing'
   | 'thunder';
-export type Condition =
+type Condition =
   | 'blinded'
   | 'charmed'
   | 'deafened'
@@ -57,13 +57,21 @@ export type Condition =
   | 'stunned'
   | 'unconscious'
   | 'disease';
-export type Skill = Record<string, string>;
+type Skill = Record<string, string>;
 export type CRValues =
   | `${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30}`
   | '1/8'
   | '1/4'
   | '1/2';
-export type CR = CRValues | { cr: CRValues; xp?: number };
+type CR = CRValues | { cr: CRValues; xp?: number };
+
+export type Ability = { name: string; entries: string[] };
+type Trait = Ability & {
+  sort?: number;
+};
+type Action = Ability;
+type Legendary = Ability;
+
 export type Monster = {
   name: string;
   size: Size[];
@@ -87,4 +95,7 @@ export type Monster = {
   passive: number;
   languages?: string[];
   cr: CR;
+  trait?: Trait[];
+  action?: Action[];
+  legendary?: Legendary[];
 };

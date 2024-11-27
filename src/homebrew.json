@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/brew-fast/homebrew.json",
 	"_meta": {
 		"sources": [{
-			"json": {},
+			"json": "5etools",
 			"version": "0.1.0",
 			"abbreviation": "5etools",
 			"full": "5th Edition System Reference Document"
@@ -15,7 +15,7 @@
 		{
 			"name": "Adult Blue Dragon",
 			"group": ["Chromatic Dragon"],
-			"source": "Hardcodexmonsters",
+			"source": "5etools",
 			"page": 91,
 			"size": ["H"],
 			"type": "dragon",

@@ -1,4 +1,4 @@
-import type { Alignment, CRValues, Monster, Size } from './monster';
+import type { Alignment, CRValues, Monster, Size, Ability } from './monster';
 import homebrew from './homebrew.json' assert { type: 'json' };
 
 const sizeMapping = (sizeAbbr: Size) =>
@@ -72,6 +72,31 @@ const crToXp = (cr: CRValues) =>
     '29': '135000',
     '30': '155000',
   })[cr];
+const formatNumber = (num: number | string) =>
+  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+const mappings: [RegExp, string][] = [
+  [/\{\@atk mw\}/g, 'Melee Weapon Attack:'],
+  [/\{\@hit (\d+?)\}/g, '+$1'],
+  [/\{\@h\}/g, 'Hit:'],
+  [/\{\@damage (.+?)\}/g, '$1'],
+  [/\{\@dc (\d+?)\}/g, 'DC $1'],
+  [/\{\@skill (.+?)\}/g, '$1'],
+  [/\{\@condition (.+?)\}/g, '$1'],
+  [/\{\@recharge ([1-5])\}/g, '(Recharge $1-6)'],
+  [/\{\@recharge (6)\}/g, '(Recharge $1)'],
+];
+
+const abilityToText = ({ name, entries }: Ability) => {
+  let entryText = `${name}. ${entries.map((entry) => entry).join('<br>')}`;
+  mappings.forEach(([regex, replacement]) => {
+    entryText = entryText.replace(regex, replacement);
+  });
+  return entryText;
+};
+
+const abilitiesToText = (abilities: Ability[]) =>
+  abilities.map(abilityToText).join('<br><br>');
 
 export const mapToHardcodex = (monster: Monster) => {
   const {
@@ -96,8 +121,12 @@ export const mapToHardcodex = (monster: Monster) => {
     passive,
     languages,
     cr: crValueOrObject,
+    trait,
+    action,
+    legendary,
   } = monster;
 
+  const sizeString = size.map(sizeMapping).join('/');
   const alignmentString = alignment.map(alignmentMapping).join(' ');
   const { ac, from: acType } =
     typeof monster.ac[0] === 'number' ? { ac: monster.ac[0] } : monster.ac[0];
@@ -108,19 +137,13 @@ export const mapToHardcodex = (monster: Monster) => {
     )
     .sort(([typeA], [typeB]) => typeA.localeCompare(typeB))
     .join(', ');
-  const { cr, xp } =
-    typeof crValueOrObject === 'string'
-      ? { cr: crValueOrObject, xp: crToXp(crValueOrObject) }
-      : {
-          cr: crValueOrObject.cr,
-          xp: crValueOrObject.xp
-            ? crValueOrObject.xp
-            : crToXp(crValueOrObject.cr),
-        };
+  const cr =
+    typeof crValueOrObject === 'string' ? crValueOrObject : crValueOrObject.cr;
+  const xp = crToXp(cr);
 
   const columns: Array<string | number> = [
     name,
-    `${size} ${type}`,
+    `${sizeString} ${type}`,
     alignmentString,
     ac,
     acTypeString,
@@ -140,6 +163,12 @@ export const mapToHardcodex = (monster: Monster) => {
     joinArray(conditionImmune),
     joinArray([...senses, `Passive Perception ${passive}`]),
     languages ? joinArray(languages) : '',
+    cr,
+    formatNumber(xp),
+    '',
+    abilitiesToText(action),
+    abilitiesToText(legendary),
+    abilitiesToText(trait),
   ];
   console.log(columns.join(';'));
   return columns;
