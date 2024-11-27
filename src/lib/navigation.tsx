@@ -12,17 +12,13 @@ const Navigation: React.FC = () => (
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
-        <Link href="/">
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            Home
-          </NavigationMenuLink>
+        <Link href="/" className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink>Home</NavigationMenuLink>
         </Link>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <Link href="/monster">
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            Monster Cards
-          </NavigationMenuLink>
+        <Link href="/monster" className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink>Monster Cards</NavigationMenuLink>
         </Link>
       </NavigationMenuItem>
     </NavigationMenuList>
