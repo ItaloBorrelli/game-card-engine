@@ -1,9 +1,10 @@
+import { Box } from '@chakra-ui/react';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
+    <Box className="grid place-items-center h-screen">
       <Link href="/monster">Monster Cards</Link>
-    </div>
+    </Box>
   );
 }

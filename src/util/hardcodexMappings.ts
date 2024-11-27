@@ -97,6 +97,5 @@ export const mapToCard = (monster: Monster) => {
     legendary ? abilitiesToText(legendary) : '',
     trait ? abilitiesToText(trait) : '',
   ];
-  console.log(columns.join(';'));
-  return columns;
+  return columns.join(';');
 };
