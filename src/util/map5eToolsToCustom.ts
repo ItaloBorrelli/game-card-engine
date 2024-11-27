@@ -2,8 +2,8 @@ import type {
   Monster5eTools,
   Alignment as Alignment5eTools,
   Size as Size5eTools,
-} from '@type/monster_5etools';
-import type { Monster, CRValue, Size } from '@type/monster';
+} from '@/types/monster_5etools';
+import type { Monster, CRValue, Size } from '@/types/monster';
 
 export const sizeMapping = (sizeAbbr: Size5eTools): Size =>
   ({

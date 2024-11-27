@@ -1,4 +1,6 @@
 'use client';
+import { Button } from '@/components/ui/button';
+import { Box, Input } from '@chakra-ui/react';
 import type React from 'react';
 import { useState } from 'react';
 
@@ -23,15 +25,15 @@ const Monster: React.FC = () => {
   };
 
   return (
-    <div>
-      <input type="file" accept=".json" onChange={handleFileUpload} />
+    <Box>
+      <Input type="file" accept=".json" onChange={handleFileUpload} />
       {fileContent ? (
         <div>
-          <button onClick={() => setFileContent(null)}>Clear File</button>
+          <Button onClick={() => setFileContent(null)}>Clear File</Button>
           <pre>{JSON.stringify(JSON.parse(fileContent), null, 2)}</pre>
         </div>
       ) : null}
-    </div>
+    </Box>
   );
 };
 

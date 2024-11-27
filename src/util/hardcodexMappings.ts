@@ -1,4 +1,4 @@
-import type { Monster, Ability } from '@type/monster';
+import type { Monster, Ability } from '@/types/monster';
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
