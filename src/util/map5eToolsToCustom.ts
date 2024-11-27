@@ -70,7 +70,7 @@ export const crToXp = (cr: CRValue) =>
     '30': 155000,
   })[cr];
 
-const monster = (toolsMonster: Monster5eTools): Monster => {
+export const convertMonster = (toolsMonster: Monster5eTools): Monster => {
   const {
     name,
     size,

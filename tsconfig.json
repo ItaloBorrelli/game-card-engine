@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@component/*": ["./src/components"],
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components"],
       "@type/*": ["./src/types/*"],
       "@util/*": ["./src/util/*"]
     }
