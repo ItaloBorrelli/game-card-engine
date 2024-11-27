@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { Monster5eTools } from '@/types/monster_5etools';
-import { mapToCard } from '@/util/hardcodexMappings';
+import { mapToCard } from '@/util/mapToHardcodex';
 import { convertMonster } from '@/util/map5eToolsToCustom';
 import type React from 'react';
 import { useState } from 'react';
