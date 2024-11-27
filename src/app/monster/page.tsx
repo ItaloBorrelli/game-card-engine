@@ -1,9 +1,9 @@
 'use client';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import type { Monster5eTools } from '@/types/monster_5etools';
 import { mapToCard } from '@/util/hardcodexMappings';
 import { convertMonster } from '@/util/map5eToolsToCustom';
-import { Box, Input } from '@chakra-ui/react';
 import type React from 'react';
 import { useState } from 'react';
 
@@ -59,7 +59,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <Box className="grid place-items-center h-screen">
+    <>
       <Input type="file" accept=".json" onChange={handleFileUpload} />
       {fileContent ? (
         <div>
@@ -69,7 +69,7 @@ const Page: React.FC = () => {
           <Button onClick={() => setFileContent(null)}>Clear File</Button>
         </div>
       ) : null}
-    </Box>
+    </>
   );
 };
 
