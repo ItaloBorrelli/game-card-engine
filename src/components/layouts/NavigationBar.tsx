@@ -12,7 +12,7 @@ import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import Link from 'next/link';
 import type React from 'react';
 
-const Navigation: React.FC = () => (
+const NavigationBar: React.FC = () => (
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
@@ -40,4 +40,4 @@ const Navigation: React.FC = () => (
   </NavigationMenu>
 );
 
-export default Navigation;
+export default NavigationBar;
