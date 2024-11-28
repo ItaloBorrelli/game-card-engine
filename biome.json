@@ -1,10 +1,20 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": true },
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
-    "include": ["src/**/*", "test/**/*"],
+    "include": [
+      "src/**/*",
+      "test/**/*"
+    ],
     "ignoreUnknown": false,
-    "ignore": [".next/*", "node_modules/*"]
+    "ignore": [
+      ".next/*",
+      "node_modules/*"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -18,8 +28,36 @@
     "bracketSpacing": true,
     "ignore": []
   },
-  "organizeImports": { "enabled": true },
-  "linter": { "enabled": true },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noForEach": "error",
+        "noStaticOnlyClass": "error",
+        "noUselessSwitchCase": "error",
+        "useFlatMap": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
+      "style": {
+        "noNegationElse": "off",
+        "useForOf": "error",
+        "useNodejsImportProtocol": "error",
+        "useNumberNamespace": "error"
+      },
+      "suspicious": {
+        "noDoubleEquals": "error",
+        "noThenProperty": "error",
+        "useIsArray": "error"
+      }
+    }
+  },
   "javascript": {
     "formatter": {
       "jsxQuoteStyle": "double",
