@@ -7,8 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "biome lint --fix",
-    "format": "biome format --fix"
+    "lint": "biome lint --write",
+    "format": "biome format --write"
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.1",
@@ -25,15 +25,14 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "biome": "^0.3.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "main": "index.js",
   "type": "module",
   "keywords": [
     "dnd"
