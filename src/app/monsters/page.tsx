@@ -2,11 +2,12 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { Monster5eTools } from '@/types/monster_5etools';
-import { mapToCard } from '@/util/mapToHardcodex';
-import { convertMonster } from '@/util/map5eToolsToCustom';
+import { mapToCard } from '@/lib/mapToHardcodex';
+import { convertMonster } from '@/lib/map5eToolsToCustom';
 import type React from 'react';
 import { useState } from 'react';
-
+import MonsterCard from '@/components/card-block/monster-card';
+import monsters from '@/../content/default_monsters.json';
 type DownloadFileProps = { fileContent: Monster5eTools[] };
 
 const DownloadFile: React.FC<DownloadFileProps> = ({
@@ -39,7 +40,9 @@ const DownloadFile: React.FC<DownloadFileProps> = ({
 };
 
 const Page: React.FC = () => {
-  const [fileContent, setFileContent] = useState<string | null>(null);
+  const [fileContent, setFileContent] = useState<string | null>(
+    JSON.stringify(monsters)
+  );
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -60,15 +63,21 @@ const Page: React.FC = () => {
 
   return (
     <>
-      <Input type="file" accept=".json" onChange={handleFileUpload} />
       {fileContent ? (
         <div>
+          {(JSON.parse(fileContent) as Monster5eTools[])
+            .map(convertMonster)
+            .map((monster) => (
+              <MonsterCard monster={monster} key={monster.name} />
+            ))}
           <DownloadFile
             fileContent={JSON.parse(fileContent) as Monster5eTools[]}
           />
           <Button onClick={() => setFileContent(null)}>Clear File</Button>
         </div>
-      ) : null}
+      ) : (
+        <Input type="file" accept=".json" onChange={handleFileUpload} />
+      )}
     </>
   );
 };

@@ -8,32 +8,20 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import Link from 'next/link';
 import type React from 'react';
 
 const NavigationBar: React.FC = () => (
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
-        <Link href="/" className={navigationMenuTriggerStyle()}>
-          <NavigationMenuLink>Home</NavigationMenuLink>
-        </Link>
+        <NavigationMenuLink href="/">Home</NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
-          Cards
-        </NavigationMenuTrigger>
+        <NavigationMenuTrigger>Cards</NavigationMenuTrigger>
         <NavigationMenuContent>
-          <Link href="/items" className={navigationMenuTriggerStyle()}>
-            <NavigationMenuLink>Items</NavigationMenuLink>
-          </Link>
-          <Link href="/monsters" className={navigationMenuTriggerStyle()}>
-            <NavigationMenuLink>Spells</NavigationMenuLink>
-          </Link>
-          <Link href="/spells" className={navigationMenuTriggerStyle()}>
-            <NavigationMenuLink>Monsters</NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink href="/items">Items</NavigationMenuLink>
+          <NavigationMenuLink href="/monsters">Monsters</NavigationMenuLink>
+          <NavigationMenuLink href="/spells">Spells</NavigationMenuLink>
         </NavigationMenuContent>
       </NavigationMenuItem>
     </NavigationMenuList>

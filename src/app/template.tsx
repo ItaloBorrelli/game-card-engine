@@ -1,4 +1,6 @@
-import Navigation from '@/lib/navigation';
+'use client';
+
+import Navigation from '@/components/layouts/navigation-bar';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (

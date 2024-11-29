@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+    },
+    // {
+    //   "name": "Attach to Chrome",
+    //   "type": "chrome",
+    //   "request": "launch",
+    //   "url": "http://localhost:3000",
+    //   "webRoot": "${workspaceFolder}",
+    //   "port": 9222,
+    //   "sourceMaps": true,
+    //   "userDataDir": "C:\\Users\\iborrelli\\AppData\\Local\\Google\\Chrome\\User Data"
+    // }
+  ]
+}

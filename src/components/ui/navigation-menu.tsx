@@ -2,8 +2,9 @@ import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-react';
-
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import NextLink from 'next/link';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -53,7 +54,7 @@ const NavigationMenuTrigger = React.forwardRef<
     className={cn(navigationMenuTriggerStyle(), 'group', className)}
     {...props}
   >
-    {children}{' '}
+    {children}
     <ChevronDown
       className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
       aria-hidden="true"
@@ -77,7 +78,23 @@ const NavigationMenuContent = React.forwardRef<
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 
-const NavigationMenuLink = NavigationMenuPrimitive.Link;
+const NavigationMenuLink = ({
+  href,
+  ...props
+}: React.ComponentProps<typeof NextLink>) => {
+  const pathname = usePathname();
+  const isActive = href === pathname;
+
+  return (
+    <NavigationMenuPrimitive.Link asChild active={isActive}>
+      <NextLink
+        href={href}
+        className={navigationMenuTriggerStyle()}
+        {...props}
+      />
+    </NavigationMenuPrimitive.Link>
+  );
+};
 
 const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
