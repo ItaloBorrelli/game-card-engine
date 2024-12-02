@@ -1,4 +1,4 @@
-import type { Ability, CRValue, Skill, Speed } from './monster';
+import type { Ability, CRValue, Skill, Speed, Spellcasting } from './monster';
 
 export type Size = 'F' | 'D' | 'T' | 'S' | 'M' | 'L' | 'H' | 'G' | 'C' | 'V';
 export type Alignment = 'L' | 'N' | 'NX' | 'NY' | 'C' | 'G' | 'E' | 'U' | 'A';
@@ -15,12 +15,6 @@ type SaveThrow = {
 };
 
 type CR = CRValue | { cr: CRValue; xp?: number };
-
-type Trait = Ability & {
-  sort?: number;
-};
-type Action = Ability;
-type Legendary = Ability;
 
 type Monster5eTools = {
   cardSize?: 'S' | 'L';
@@ -46,9 +40,10 @@ type Monster5eTools = {
   passive: number;
   languages?: string[];
   cr: CR;
-  trait?: Trait[];
-  action?: Action[];
-  legendary?: Legendary[];
+  trait?: Ability[];
+  action?: Ability[];
+  legendary?: Ability[];
+  spellcasting?: Spellcasting[];
 };
 
 export default Monster5eTools;

@@ -101,9 +101,33 @@ export enum Skill {
   survival = 'survival',
 }
 
+// "spellcasting": [
+// 		{
+// 			"name": "Innate Spellcasting",
+// 			"type": "spellcasting",
+// 			"headerEntries": [
+// 				"The hag's innate spellcasting ability is Charisma (spell save {@dc 12}). She can innately cast the following spells, requiring no material components:"
+// 			],
+// 			"will": [
+// 				"{@spell dancing lights}",
+// 				"{@spell minor illusion}",
+// 				"{@spell vicious mockery}"
+// 			],
+// 			"ability": "cha"
+// 		}
+// 	],
+
 export type CRValue =
   `${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30}`;
 '1/8' | '1/4' | '1/2';
+
+export type Spellcasting = {
+  name: string;
+  type: string;
+  headerEntries: string[];
+  will?: string[];
+  ability: string;
+};
 
 type Monster = {
   cardSize?: 'S' | 'L';
@@ -129,6 +153,7 @@ type Monster = {
   trait?: Ability[];
   action?: Ability[];
   legendary?: Ability[];
+  spellcasting?: Spellcasting[];
 };
 
 export default Monster;

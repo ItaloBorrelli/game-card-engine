@@ -1,5 +1,5 @@
 import type Monster from '@/types/monster';
-import type { Ability } from '@/types/monster';
+import type { Ability, Spellcasting } from '@/types/monster';
 import type React from 'react';
 import styles from './monster-manual-card.module.css';
 import {
@@ -92,6 +92,19 @@ const createStatBlock = (stat: string, value: number) => (
   </div>
 );
 
+const spellCastingToAbility = ({
+  name,
+  headerEntries,
+  will,
+}: Spellcasting): Ability => {
+  return {
+    name,
+    entries: will
+      ? [...headerEntries, `At will: ${will.join(', ')}`]
+      : headerEntries,
+  };
+};
+
 const MonsterManualCard: React.FC<{ monster: Monster }> = ({
   monster,
 }: { monster: Monster }) => {
@@ -113,7 +126,16 @@ const MonsterManualCard: React.FC<{ monster: Monster }> = ({
     trait,
     action,
     legendary,
+    spellcasting,
   } = monster;
+
+  const allTraits = trait
+    ? spellcasting
+      ? [...trait, ...spellcasting.map(spellCastingToAbility)]
+      : trait
+    : spellcasting
+      ? spellcasting.map(spellCastingToAbility)
+      : undefined;
   return (
     <div className={styles.cols2}>
       <div className={styles.monster}>
@@ -156,7 +178,7 @@ const MonsterManualCard: React.FC<{ monster: Monster }> = ({
                   {stat('Challenge', `${cr} (${formatNumber(xp)} XP)`)}
                 </div>
                 <Separator />
-                {trait ? trait.map(formatAbility) : <></>}
+                {allTraits ? allTraits.map(formatAbility) : <></>}
                 {action ? (
                   <>
                     <div className={styles.rub}>Actions</div>
