@@ -1,49 +1,29 @@
 'use client';
 import MonsterManualCard from '@/components/card-block/5e-monster-manual-card/monster-manual-card';
 import { Button } from '@/components/ui/button';
+import DownloadFileButton from '@/components/ui/download-file-button';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { customFrom5eTools } from '@/lib/custom-from-5e-tools';
-import { mapToCard } from '@/lib/hardcodex-from-custom';
 import type Monster5eTools from '@/types/monster-5e-tools';
 import monsters from 'content/default_monsters.json';
 import type React from 'react';
 import { useState } from 'react';
 
-type DownloadFileProps = { fileContent: Monster5eTools[]; className?: string };
-
-const DownloadFile: React.FC<DownloadFileProps> = ({
-  fileContent,
-  className,
-}: DownloadFileProps) => {
-  const handleDownload = () => {
-    // Create file content
-    const mapJson = (json: Monster5eTools[]) =>
-      json.map(customFrom5eTools).map(mapToCard).join('\n');
-
-    const data = mapJson(fileContent);
-
-    // Create a blob and URL
-    const blob = new Blob([data], { type: 'application/text' });
-    const url = URL.createObjectURL(blob);
-
-    // Create a temporary link element
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'hardcodex_monsters.txt'; // Set the desired file name
-    document.body.appendChild(a);
-
-    // Trigger the download and clean up
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url); // Release memory
-  };
-
-  return (
-    <Button className={className} onClick={handleDownload}>
-      Download Hardcodex File
-    </Button>
-  );
-};
+const DisplayMonsterManualCards: React.FC<{ monsters: Monster5eTools[] }> = ({
+  monsters,
+}: { monsters: Monster5eTools[] }) =>
+  monsters
+    .map(customFrom5eTools)
+    .map((monster) => (
+      <MonsterManualCard monster={monster} key={monster.name} />
+    ));
 
 const Page: React.FC = () => {
   const [fileContent, setFileContent] = useState<string | null>(
@@ -67,24 +47,39 @@ const Page: React.FC = () => {
     }
   };
 
+  const [selectValue, setSelectValue] = useState<string>('5e');
+
   return (
     <>
-      {fileContent ? (
-        <div>
-          <div className="m-4 space-x-2">
-            <DownloadFile
+      {!fileContent ? (
+        <Input type="file" accept=".json" onChange={handleFileUpload} />
+      ) : (
+        <div className="space-y-2">
+          <div className="mt-2 ml-4 space-x-2 flex items-center">
+            <p className="text-sm font-medium">Card Style: </p>
+            <Select value={selectValue} onValueChange={setSelectValue}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue defaultValue="5e" placeholder="Select a fruit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5e">5e Monster Manual</SelectItem>
+                <SelectItem value="custom">Custom</SelectItem>
+              </SelectContent>
+            </Select>
+            <DownloadFileButton
               fileContent={JSON.parse(fileContent) as Monster5eTools[]}
+              fileName="hardcodex.csv"
             />
             <Button onClick={() => setFileContent(null)}>Clear File</Button>
           </div>
-          {(JSON.parse(fileContent) as Monster5eTools[])
-            .map(customFrom5eTools)
-            .map((monster) => (
-              <MonsterManualCard monster={monster} key={monster.name} />
-            ))}
+          {selectValue === '5e' ? (
+            <DisplayMonsterManualCards
+              monsters={JSON.parse(fileContent) as Monster5eTools[]}
+            />
+          ) : (
+            <></>
+          )}
         </div>
-      ) : (
-        <Input type="file" accept=".json" onChange={handleFileUpload} />
       )}
     </>
   );
