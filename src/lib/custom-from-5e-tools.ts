@@ -98,6 +98,7 @@ export const customFrom5eTools = (toolsMonster: Monster5eTools): Monster => {
     trait,
     action,
     legendary,
+    spellcasting,
   } = toolsMonster;
 
   const { ac, from: acType } =
@@ -150,5 +151,6 @@ export const customFrom5eTools = (toolsMonster: Monster5eTools): Monster => {
     trait,
     action,
     legendary,
+    spellcasting,
   };
 };

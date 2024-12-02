@@ -136,6 +136,10 @@ const MonsterManualCard: React.FC<{ monster: Monster }> = ({
     : spellcasting
       ? spellcasting.map(spellCastingToAbility)
       : undefined;
+
+  if (name === 'Green Hag') {
+    console.log(allTraits);
+  }
   return (
     <div className={styles.cols2}>
       <div className={styles.monster}>
