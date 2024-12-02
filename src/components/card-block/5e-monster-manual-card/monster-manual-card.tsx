@@ -1,23 +1,23 @@
-import type Monster from '@/types/monster';
-import type { Ability, Spellcasting } from '@/types/monster';
-import type React from 'react';
-import styles from './monster-manual-card.module.css';
 import {
-  formatNumber,
-  mapAbilityScoreToModifier,
-  speedString,
-  joinArray,
-  sensesString,
-  typeString,
-  mapEntryToNode,
-  capitalize,
-  joinRecord,
-  capitalizeEachWord,
-  mapAttackType,
   type EntryMapping,
   type TagTypes,
+  capitalize,
+  capitalizeEachWord,
+  formatNumber,
+  joinArray,
+  joinRecord,
+  mapAbilityScoreToModifier,
+  mapAttackType,
+  mapEntryToNode,
+  sensesString,
+  speedString,
+  typeString,
 } from '@/lib/utils';
+import type Monster from '@/types/monster';
+import type { Ability, Spellcasting } from '@/types/monster';
 import * as _ from 'lodash';
+import type React from 'react';
+import styles from './monster-manual-card.module.css';
 
 const Separator: React.FC = () => (
   <div>

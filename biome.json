@@ -6,15 +6,9 @@
     "useIgnoreFile": true
   },
   "files": {
-    "include": [
-      "src/**/*",
-      "test/**/*"
-    ],
+    "include": ["src/**/*", "test/**/*"],
     "ignoreUnknown": false,
-    "ignore": [
-      ".next/*",
-      "node_modules/*"
-    ]
+    "ignore": [".next/*", "node_modules/*"]
   },
   "formatter": {
     "enabled": true,

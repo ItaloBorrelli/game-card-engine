@@ -5,6 +5,9 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.formatOnSave": false,
