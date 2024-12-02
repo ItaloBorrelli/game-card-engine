@@ -126,7 +126,7 @@ export type Spellcasting = {
   type: string;
   headerEntries: string[];
   will?: string[];
-  spells?: Record<'0', { spells: string[] }> &
+  spells?: Record<'0', { spells: string[]; slots?: number }> &
     Partial<
       Record<
         `${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`,

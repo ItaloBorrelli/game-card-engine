@@ -25,6 +25,7 @@ export type TagTypes =
   | 'hit'
   | 'recharge'
   | 'skill'
+  | 'spell'
   | 'status';
 
 export type EntryMapping = {

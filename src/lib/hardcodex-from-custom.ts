@@ -33,6 +33,7 @@ const entryMappings: Record<TagTypes, EntryMapping> = {
     postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
   },
   skill: {},
+  spell: {},
   status: {
     postProcessing: (text) => text.replace(/.*\|\|/, ''),
   },

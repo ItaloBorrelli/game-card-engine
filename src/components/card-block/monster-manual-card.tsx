@@ -65,6 +65,7 @@ const entryMappings: Record<TagTypes, EntryMapping> = {
     postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
   },
   skill: {},
+  spell: {},
   status: {
     postProcessing: (text) => text.replace(/.*\|\|/, ''),
   },
@@ -92,16 +93,41 @@ const createStatBlock = (stat: string, value: number) => (
   </div>
 );
 
+const ordinal = (n: number) => {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
+
 const spellCastingToAbility = ({
   name,
   headerEntries,
   will,
+  spells,
 }: Spellcasting): Ability => {
+  const atWillEntries = will ? `At will: ${will.join(', ')}` : undefined;
+  const spellEntries = spells
+    ? Object.entries(spells)
+        .sort(([k, _]) => Number(k))
+        .map(([key, { spells, slots }]) => {
+          const spellList = spells.join(', ');
+          const prefix =
+            key === '0'
+              ? 'Cantrips (at will)'
+              : `${ordinal(Number(key))} level (${slots} slot${slots !== 1 ? 's' : ''})`;
+          return `${prefix}: ${spellList}`;
+        })
+    : undefined;
+  let allEntries = headerEntries;
+  if (atWillEntries) {
+    allEntries = [...allEntries, atWillEntries];
+  }
+  if (spellEntries) {
+    allEntries = [...allEntries, ...spellEntries];
+  }
   return {
     name,
-    entries: will
-      ? [...headerEntries, `At will: ${will.join(', ')}`]
-      : headerEntries,
+    entries: allEntries,
   };
 };
 
