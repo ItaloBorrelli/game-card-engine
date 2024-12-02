@@ -6,7 +6,7 @@ import { mapToCard } from '@/lib/hardcodex-from-custom';
 import { customFrom5eTools } from '@/lib/custom-from-5e-tools';
 import type React from 'react';
 import { useState } from 'react';
-import MonsterManualCard from '@/components/card-block/monster-manual-card';
+import MonsterManualCard from '@/components/card-block/5e-monster-manual-card/monster-manual-card';
 import monsters from 'content/default_monsters.json';
 
 type DownloadFileProps = { fileContent: Monster5eTools[] };
