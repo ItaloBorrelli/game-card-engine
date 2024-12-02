@@ -15,6 +15,7 @@ import {
   capitalizeEachWord,
   mapAttackType,
   type EntryMapping,
+  type TagTypes,
 } from '@/lib/utils';
 import * as _ from 'lodash';
 
@@ -39,33 +40,33 @@ const stat = (s: string, v: string | number) => (
   </>
 );
 
-const entryMappings: Record<string, EntryMapping> = {
-  creature: {
-    postProcessing: capitalizeEachWord,
-  },
-  hit: {
-    postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
-  },
-  h: {
-    postProcessing: () => 'Hit: ',
-    wrapper: 'em',
-  },
+const entryMappings: Record<TagTypes, EntryMapping> = {
   atk: {
     postProcessing: (abbrev) => `${mapAttackType(abbrev)}: `,
     wrapper: 'em',
   },
-  damage: {},
-  dice: {},
-  status: {
-    postProcessing: (text) => text.replace(/.*\|\|/, ''),
+  condition: {},
+  creature: {
+    postProcessing: capitalizeEachWord,
   },
+  damage: {},
   dc: {
     postProcessing: (text) => `DC ${text}`,
   },
-  condition: {},
-  skill: {},
+  dice: {},
+  h: {
+    postProcessing: () => 'Hit: ',
+    wrapper: 'em',
+  },
+  hit: {
+    postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
+  },
   recharge: {
     postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
+  },
+  skill: {},
+  status: {
+    postProcessing: (text) => text.replace(/.*\|\|/, ''),
   },
 };
 

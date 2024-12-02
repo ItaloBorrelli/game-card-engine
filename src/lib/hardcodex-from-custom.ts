@@ -6,6 +6,11 @@ import {
   sensesString,
   capitalize,
   speedString,
+  type TagTypes,
+  type EntryMapping,
+  mapAttackType,
+  mapEntryToList,
+  typeString,
 } from './utils';
 
 export const joinEntries = (obj: Record<string, string>): string =>
@@ -13,25 +18,33 @@ export const joinEntries = (obj: Record<string, string>): string =>
     .map(([key, val]) => `${capitalize(key)} ${val}`)
     .join(', ');
 
-const mappings: [RegExp, string][] = [
-  [/\{\@atk mw\}/g, 'Melee Weapon Attack:'],
-  [/\{\@hit (\d+?)\}/g, '+$1'],
-  [/\{\@h\}/g, 'Hit:'],
-  [/\{\@damage (.+?)\}/g, '$1'],
-  [/\{\@dc (\d+?)\}/g, 'DC $1'],
-  [/\{\@skill (.+?)\}/g, '$1'],
-  [/\{\@condition (.+?)\}/g, '$1'],
-  [/\{\@recharge ([1-5])\}/g, '(Recharge $1-6)'],
-  [/\{\@recharge (6)\}/g, '(Recharge $1)'],
-];
-
-const abilityToText = ({ name, entries }: Ability) => {
-  let entryText = `${name}. ${entries.map((entry) => entry).join('<br>')}`;
-  for (const [regex, replacement] of mappings) {
-    entryText = entryText.replace(regex, replacement);
-  }
-  return entryText;
+const entryMappings: Record<TagTypes, EntryMapping> = {
+  atk: { postProcessing: (abbrev) => `${mapAttackType(abbrev)}: ` },
+  condition: {},
+  creature: {},
+  damage: {},
+  dc: { postProcessing: (text) => `DC ${text}` },
+  dice: {},
+  h: { postProcessing: () => 'Hit:' },
+  hit: {
+    postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
+  },
+  recharge: {
+    postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
+  },
+  skill: {},
+  status: {
+    postProcessing: (text) => text.replace(/.*\|\|/, ''),
+  },
 };
+
+const abilityToText = ({ name, entries }: Ability) =>
+  mapEntryToList(
+    `${name}. ${entries.map((entry) => entry).join('<br>')}`,
+    entryMappings
+  )
+    .filter((x) => typeof x === 'string')
+    .join('');
 
 export const abilitiesToText = (abilities: Ability[]) =>
   abilities.map(abilityToText).join('<br><br>');
@@ -64,7 +77,7 @@ export const mapToCard = (monster: Monster) => {
 
   const columns: Array<string | number> = [
     name,
-    `${size} ${type}`,
+    `${size.map(capitalize)} ${typeString(type)}, ${alignment}`,
     alignment,
     ac,
     armor,

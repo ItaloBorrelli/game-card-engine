@@ -14,15 +14,28 @@ export const mapAttackType = (abbrev: string) =>
     'mw,rw': 'Melee or Ranged Weapon Attack',
   })[abbrev] ?? 'Attack';
 
+export type TagTypes =
+  | 'atk'
+  | 'condition'
+  | 'creature'
+  | 'damage'
+  | 'dc'
+  | 'dice'
+  | 'h'
+  | 'hit'
+  | 'recharge'
+  | 'skill'
+  | 'status';
+
 export type EntryMapping = {
   postProcessing?: (text: string) => string;
   wrapper?: string;
 };
 
-export const mapEntryToNode = (
+export const mapEntryToList = (
   text: string,
-  mappings: Record<string, EntryMapping>
-): React.ReactElement => {
+  mappings: Record<TagTypes, EntryMapping>
+): Array<string | React.ReactElement> => {
   const result: Array<string | React.ReactElement> = [];
   const regex = /\{@(\w+)\s?([^}]*)\}/g;
   let lastIndex = 0;
@@ -32,7 +45,7 @@ export const mapEntryToNode = (
     const type = match[1];
     const content = match[2];
     lastIndex = match.index + match[0].length;
-    const mapping = mappings[type];
+    const mapping = mappings[type as TagTypes];
     if (mapping) {
       const { postProcessing, wrapper } = mapping;
       const processed = postProcessing ? postProcessing(content) : content;
@@ -49,8 +62,13 @@ export const mapEntryToNode = (
 
   result.push(text.slice(lastIndex));
 
-  return <>{result}</>;
+  return result;
 };
+
+export const mapEntryToNode = (
+  text: string,
+  mappings: Record<TagTypes, EntryMapping>
+): React.ReactElement => <>{mapEntryToList(text, mappings)}</>;
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
