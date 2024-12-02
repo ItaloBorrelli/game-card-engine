@@ -2,8 +2,8 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { Monster5eTools } from '@/types/monster_5etools';
-import { mapToCard } from '@/lib/mapToHardcodex';
-import { convertMonster } from '@/lib/map5eToolsToCustom';
+import { mapToCard } from '@/lib/hardcodexFromCustom';
+import { customFrom5eTools } from '@/lib/customFrom5eTools';
 import type React from 'react';
 import { useState } from 'react';
 import MonsterCard from '@/components/card-block/monster-card';
@@ -16,7 +16,7 @@ const DownloadFile: React.FC<DownloadFileProps> = ({
   const handleDownload = () => {
     // Create file content
     const mapJson = (json: Monster5eTools[]) =>
-      json.map(convertMonster).map(mapToCard).join('\n');
+      json.map(customFrom5eTools).map(mapToCard).join('\n');
 
     const data = mapJson(fileContent);
 
@@ -66,7 +66,7 @@ const Page: React.FC = () => {
       {fileContent ? (
         <div>
           {(JSON.parse(fileContent) as Monster5eTools[])
-            .map(convertMonster)
+            .map(customFrom5eTools)
             .map((monster) => (
               <MonsterCard monster={monster} key={monster.name} />
             ))}

@@ -1,16 +1,10 @@
 import type { Monster, Ability } from '@/types/monster';
+import { formatNumber, joinArray, sensesString, capitalize } from './utils';
 
-export const capitalize = (str: string) =>
-  str.charAt(0).toUpperCase() + str.slice(1);
 export const joinEntries = (obj: Record<string, string>): string =>
   Object.entries(obj)
     .map(([key, val]) => `${capitalize(key)} ${val}`)
     .join(', ');
-export const joinArray = (arr: string[]): string =>
-  arr ? arr.map(capitalize).join(', ') : '';
-
-export const formatNumber = (num: number | string) =>
-  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 const mappings: [RegExp, string][] = [
   [/\{\@atk mw\}/g, 'Melee Weapon Attack:'],
@@ -85,11 +79,11 @@ export const mapToCard = (monster: Monster) => {
     cha,
     joinEntries(save),
     joinEntries(skill),
-    resist ? joinArray(resist) : '',
-    immune ? joinArray(immune) : '',
-    conditionImmune ? joinArray(conditionImmune) : '',
-    joinArray([...(senses ?? []), `Passive Perception ${passive}`]),
-    languages ? joinArray(languages) : '',
+    joinArray(resist),
+    joinArray(immune),
+    joinArray(conditionImmune),
+    sensesString(passive, senses),
+    joinArray(languages),
     cr,
     formatNumber(xp),
     '',

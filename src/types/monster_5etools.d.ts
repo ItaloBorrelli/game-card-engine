@@ -2,21 +2,7 @@ import type { CRValue, Skill } from './monster';
 
 export type Size = 'F' | 'D' | 'T' | 'S' | 'M' | 'L' | 'H' | 'G' | 'C' | 'V';
 export type Alignment = 'L' | 'N' | 'NX' | 'NY' | 'C' | 'G' | 'E' | 'U' | 'A';
-type CreatureType =
-  | 'aberration'
-  | 'beast'
-  | 'celestial'
-  | 'construct'
-  | 'dragon'
-  | 'elemental'
-  | 'fey'
-  | 'fiend'
-  | 'giant'
-  | 'humanoid'
-  | 'monstrosity'
-  | 'ooze'
-  | 'plant'
-  | 'undead';
+
 type AC = Array<{ ac: number; from?: string[] }> | Array<number>;
 type HP = { average: number; formula: string };
 type Speed = { walk?: number; burrow?: number; fly?: number };
@@ -28,37 +14,6 @@ type SaveThrow = {
   wis?: string;
   cha?: string;
 };
-type DamageType =
-  | 'acid'
-  | 'bludgeoning'
-  | 'cold'
-  | 'fire'
-  | 'force'
-  | 'lightning'
-  | 'necrotic'
-  | 'piercing'
-  | 'poison'
-  | 'psychic'
-  | 'radiant'
-  | 'slashing'
-  | 'thunder';
-type Condition =
-  | 'blinded'
-  | 'charmed'
-  | 'deafened'
-  | 'exhaustion'
-  | 'frightened'
-  | 'grappled'
-  | 'incapacitated'
-  | 'invisible'
-  | 'paralyzed'
-  | 'petrified'
-  | 'poisoned'
-  | 'prone'
-  | 'restrained'
-  | 'stunned'
-  | 'unconscious'
-  | 'disease';
 
 type CR = CRValue | { cr: CRValue; xp?: number };
 
@@ -73,7 +28,7 @@ export type Monster5eTools = {
   cardSize?: 'S' | 'L';
   name: string;
   size: Size[];
-  type: CreatureType;
+  type: CreatureType | { type: CreatureType; tags: string[] };
   alignment: Alignment[];
   ac: AC;
   hp: HP;
@@ -84,7 +39,7 @@ export type Monster5eTools = {
   int: number;
   wis: number;
   cha: number;
-  save: SaveThrow;
+  save?: SaveThrow;
   skill: Record<Skill, string>;
   resist?: DamageType[];
   immune?: DamageType[];

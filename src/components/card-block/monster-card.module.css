@@ -4,20 +4,9 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   font-size: 62.5%;
+  color: #000;
 }
-/*body			{background:white url("./fond-ph.jpg") repeat}*/
 
-.title1 {
-  font-size: 2.4rem;
-  text-align: center;
-  padding: 20px 10px 10px 10px;
-  font-weight: bold;
-}
-.title2 {
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 0px 10px 20px 10px;
-}
 .warning {
   font-size: 1.2rem;
   text-align: center;
@@ -31,6 +20,7 @@
   width: 100%;
   height: 6px;
 }
+
 .yellow {
   background-color: #fdf1dc;
   padding: 10px 8px 5px 8px;
@@ -40,14 +30,58 @@
   background-repeat: no-repeat, repeat;
 }
 
-/* a {
-  color: #b80000;
-  text-decoration: none;
+.block {
+  display: inline-block;
+  min-width: 100%;
+  padding: 10px 20px 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: left;
 }
-a:hover {
-  color: #d80000;
-  border-bottom-style: dashed;
-  border-bottom-width: 1px;
+
+.block h1 {
+  padding: 0;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  color: #6d0000;
+  font-size: 1.8rem;
+  line-height: 1;
+  break-after: avoid;
+}
+.block h1 span {
+  padding: 1px 4px;
+  background-color: #f0f0f0;
+  color: #444;
+  font-family: arial, sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  font-variant: none;
+  letter-spacing: normal;
+}
+
+.type {
+  padding: 2px 0 0px 0;
+  text-align: left;
+  font-style: italic;
+}
+
+div.sansSerif svg {
+  width: 100%;
+  height: 5px;
+}
+.sansSerif {
+  font-family: arial, sans-serif;
+}
+.red {
+  color: #6d0000;
+}
+.stat {
+  display: inline-block;
+  width: 16.6%;
+  max-width: 55px;
+  text-align: center;
+  vertical-align: top;
 }
 
 .col {
@@ -68,6 +102,14 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
 }
+.rub {
+  color: #6d0000;
+  margin: 6px 0 4px 0;
+  border-bottom: 1px solid #b30303;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+}
+
 .content {
   display: inline-block;
   width: 490px;
@@ -93,36 +135,8 @@ a:hover {
   border: none;
 }
 
-.bloc {
-  display: inline-block;
-  min-width: 100%;
-  padding: 10px 20px 0 20px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  text-align: left;
-}
 .double {
   column-count: 2;
-}
-.blockh1 {
-  padding: 0;
-  font-variant: small-caps;
-  letter-spacing: 1px;
-  color: #6d0000;
-  font-size: 1.8rem;
-  line-height: 1;
-  break-after: avoid;
-}
-.blockh1 span {
-  padding: 1px 4px;
-  background-color: #f0f0f0;
-  color: #444;
-  font-family: arial, sans-serif;
-  font-size: 1rem;
-  font-weight: normal;
-  font-variant: none;
-  letter-spacing: normal;
 }
 
 .trad {
@@ -136,11 +150,7 @@ a:hover {
   text-align: left;
   font-style: italic;
 }
-.type {
-  padding: 2px 0 0px 0;
-  text-align: left;
-  font-style: italic;
-}
+
 .prerequis {
   padding: 2px 0 0px 0;
   text-align: left;
@@ -190,17 +200,18 @@ div.ref {
   font-size: 1.1rem;
 }
 
-p {
+p.abilities {
   padding: 0;
   margin: 8px 0 8px 0;
 }
+/*
 ul {
   list-style: square outside;
   margin-left: 17px;
 }
 li {
   margin-top: 3px;
-}
+} */
 .center {
   text-align: center;
 }
@@ -270,24 +281,6 @@ li {
   margin: 0 0 5px 10px;
 }
 
-
-div.sansSerif svg {
-  width: 100%;
-  height: 5px;
-}
-.sansSerif {
-  font-family: arial, sans-serif;
-}
-.red {
-  color: #6d0000;
-}
-.stat {
-  display: inline-block;
-  width: 16.6%;
-  max-width: 55px;
-  text-align: center;
-  vertical-align: top;
-}
 .ability {
   color: #6d0000;
   margin: 6px 0 4px 0;

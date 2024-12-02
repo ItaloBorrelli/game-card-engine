@@ -54,7 +54,8 @@
       "suspicious": {
         "noDoubleEquals": "error",
         "noThenProperty": "error",
-        "useIsArray": "error"
+        "useIsArray": "error",
+        "noAssignInExpressions": "off"
       }
     }
   },

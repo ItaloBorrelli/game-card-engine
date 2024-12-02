@@ -4,6 +4,7 @@ import type {
   Size as Size5eTools,
 } from '@/types/monster_5etools';
 import type { Monster, CRValue, Size } from '@/types/monster';
+import { mapAbilityScoreToSave } from './utils';
 
 export const sizeMapping = (sizeAbbr: Size5eTools): Size =>
   ({
@@ -21,15 +22,15 @@ export const sizeMapping = (sizeAbbr: Size5eTools): Size =>
 
 export const alignmentMapping = (alignmentAbbr: Alignment5eTools) =>
   ({
-    L: 'Lawful',
-    N: 'Neutral',
-    NX: 'Neutral (law/chaos axis)',
-    NY: 'Neutral (good/evil axis)',
-    C: 'Chaotic',
-    G: 'Good',
-    E: 'Evil',
-    U: 'Unaligned',
-    A: 'Any',
+    L: 'lawful',
+    N: 'neutral',
+    NX: 'neutral (law/chaos axis)',
+    NY: 'neutral (good/evil axis)',
+    C: 'chaotic',
+    G: 'good',
+    E: 'evil',
+    U: 'unaligned',
+    A: 'any',
   })[alignmentAbbr];
 
 export const crToXp = (cr: CRValue) =>
@@ -70,7 +71,7 @@ export const crToXp = (cr: CRValue) =>
     '30': 155000,
   })[cr];
 
-export const convertMonster = (toolsMonster: Monster5eTools): Monster => {
+export const customFrom5eTools = (toolsMonster: Monster5eTools): Monster => {
   const {
     name,
     size,
@@ -124,9 +125,18 @@ export const convertMonster = (toolsMonster: Monster5eTools): Monster => {
       cha,
     },
     alignment: alignment.map(alignmentMapping).join(' '),
-    save: Object.fromEntries(
-      Object.entries(save).map(([key, value]) => [key, Number(value)])
-    ),
+    save: save
+      ? Object.fromEntries(
+          Object.entries(save).map(([key, value]) => [key, Number(value)])
+        )
+      : {
+          str: mapAbilityScoreToSave(str),
+          dex: mapAbilityScoreToSave(dex),
+          con: mapAbilityScoreToSave(con),
+          int: mapAbilityScoreToSave(int),
+          wis: mapAbilityScoreToSave(wis),
+          cha: mapAbilityScoreToSave(cha),
+        },
     skill,
     resist,
     immune,
