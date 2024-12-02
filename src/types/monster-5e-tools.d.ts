@@ -1,11 +1,10 @@
-import type { CRValue, Skill } from './monster';
+import type { Ability, CRValue, Skill, Speed } from './monster';
 
 export type Size = 'F' | 'D' | 'T' | 'S' | 'M' | 'L' | 'H' | 'G' | 'C' | 'V';
 export type Alignment = 'L' | 'N' | 'NX' | 'NY' | 'C' | 'G' | 'E' | 'U' | 'A';
 
 type AC = Array<{ ac: number; from?: string[] }> | Array<number>;
 type HP = { average: number; formula: string };
-type Speed = { walk?: number; burrow?: number; fly?: number };
 type SaveThrow = {
   str?: string;
   dex?: string;
@@ -17,7 +16,6 @@ type SaveThrow = {
 
 type CR = CRValue | { cr: CRValue; xp?: number };
 
-export type Ability = { name: string; entries: string[] };
 type Trait = Ability & {
   sort?: number;
 };

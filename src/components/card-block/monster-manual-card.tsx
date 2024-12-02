@@ -1,6 +1,6 @@
 import type { Ability, Monster } from '@/types/monster';
 import type React from 'react';
-import styles from './monster-card.module.css';
+import styles from './monster-manual-card.module.css';
 import {
   formatNumber,
   mapAbilityScoreToModifier,
@@ -11,6 +11,9 @@ import {
   mapEntryToNode,
   capitalize,
   joinRecord,
+  capitalizeEachWord,
+  mapAttackType,
+  type EntryMapping,
 } from '@/lib/utils';
 import * as _ from 'lodash';
 
@@ -35,14 +38,44 @@ const stat = (s: string, v: string | number) => (
   </>
 );
 
+const entryMappings: Record<string, EntryMapping> = {
+  creature: {
+    postProcessing: capitalizeEachWord,
+  },
+  hit: {
+    postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
+  },
+  h: {
+    postProcessing: () => 'Hit: ',
+    wrapper: 'em',
+  },
+  atk: {
+    postProcessing: (abbrev) => `${mapAttackType(abbrev)}: `,
+    wrapper: 'em',
+  },
+  damage: {},
+  dice: {},
+  status: {
+    postProcessing: (text) => text.replace(/.*\|\|/, ''),
+  },
+  dc: {
+    postProcessing: (text) => `DC ${text}`,
+  },
+  condition: {},
+  skill: {},
+  recharge: {
+    postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
+  },
+};
+
 const formatAbility = ({ name, entries }: Ability) => (
   <p className={styles.abilities} key={_.uniqueId('ability_')}>
     <strong>
-      <em>{mapEntryToNode(name)}. </em>
+      <em>{mapEntryToNode(name, entryMappings)}. </em>
     </strong>
     {entries.map((e) => (
       <span key={_.uniqueId('entry_')}>
-        {mapEntryToNode(e)}
+        {mapEntryToNode(e, entryMappings)}
         <br />
       </span>
     ))}
@@ -57,7 +90,7 @@ const createStatBlock = (stat: string, value: number) => (
   </div>
 );
 
-const MonsterCard: React.FC<{ monster: Monster }> = ({
+const MonsterManualCard: React.FC<{ monster: Monster }> = ({
   monster,
 }: { monster: Monster }) => {
   const {
@@ -147,4 +180,4 @@ const MonsterCard: React.FC<{ monster: Monster }> = ({
   );
 };
 
-export default MonsterCard;
+export default MonsterManualCard;

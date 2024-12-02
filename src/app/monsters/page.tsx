@@ -1,13 +1,14 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import type { Monster5eTools } from '@/types/monster_5etools';
-import { mapToCard } from '@/lib/hardcodexFromCustom';
-import { customFrom5eTools } from '@/lib/customFrom5eTools';
+import type { Monster5eTools } from '@/types/monster-5e-tools';
+import { mapToCard } from '@/lib/hardcodex-from-custom';
+import { customFrom5eTools } from '@/lib/custom-from-5e-tools';
 import type React from 'react';
 import { useState } from 'react';
-import MonsterCard from '@/components/card-block/monster-card';
-import monsters from '@/../content/default_monsters.json';
+import MonsterManualCard from '@/components/card-block/monster-manual-card';
+import monsters from 'content/default_monsters.json';
+
 type DownloadFileProps = { fileContent: Monster5eTools[] };
 
 const DownloadFile: React.FC<DownloadFileProps> = ({
@@ -68,7 +69,7 @@ const Page: React.FC = () => {
           {(JSON.parse(fileContent) as Monster5eTools[])
             .map(customFrom5eTools)
             .map((monster) => (
-              <MonsterCard monster={monster} key={monster.name} />
+              <MonsterManualCard monster={monster} key={monster.name} />
             ))}
           <DownloadFile
             fileContent={JSON.parse(fileContent) as Monster5eTools[]}

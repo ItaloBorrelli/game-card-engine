@@ -4,52 +4,25 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1);
-const capitalizeEachWord = (str: string) =>
+export const capitalizeEachWord = (str: string) =>
   str.split(' ').map(capitalize).join(' ');
 
-const mapAttackType = (abbrev: string) =>
+export const mapAttackType = (abbrev: string) =>
   ({
     mw: 'Melee Weapon Attack',
     rw: 'Ranged Weapon Attack',
     'mw,rw': 'Melee or Ranged Weapon Attack',
   })[abbrev] ?? 'Attack';
 
-type EntryMapping = {
+export type EntryMapping = {
   postProcessing?: (text: string) => string;
   wrapper?: string;
 };
 
-const entryMappings: Record<string, EntryMapping> = {
-  creature: {
-    postProcessing: capitalizeEachWord,
-  },
-  hit: {
-    postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
-  },
-  h: {
-    postProcessing: () => 'Hit: ',
-    wrapper: 'em',
-  },
-  atk: {
-    postProcessing: (abbrev) => `${mapAttackType(abbrev)}: `,
-    wrapper: 'em',
-  },
-  damage: {},
-  dice: {},
-  status: {
-    postProcessing: (text) => text.replace(/.*\|\|/, ''),
-  },
-  dc: {
-    postProcessing: (text) => `DC ${text}`,
-  },
-  condition: {},
-  skill: {},
-  recharge: {
-    postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
-  },
-};
-
-export const mapEntryToNode = (text: string): React.ReactElement => {
+export const mapEntryToNode = (
+  text: string,
+  mappings: Record<string, EntryMapping>
+): React.ReactElement => {
   const result: Array<string | React.ReactElement> = [];
   const regex = /\{@(\w+)\s?([^}]*)\}/g;
   let lastIndex = 0;
@@ -59,8 +32,8 @@ export const mapEntryToNode = (text: string): React.ReactElement => {
     const type = match[1];
     const content = match[2];
     lastIndex = match.index + match[0].length;
-    const mapping = entryMappings[type];
-    if (entryMappings[type]) {
+    const mapping = mappings[type];
+    if (mapping) {
       const { postProcessing, wrapper } = mapping;
       const processed = postProcessing ? postProcessing(content) : content;
       result.push(
@@ -81,10 +54,12 @@ export const mapEntryToNode = (text: string): React.ReactElement => {
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
-export const speedString = (speed: Monster['speed']) =>
+export const speedString = (speed: Monster['speed'], capitalizeEach = false) =>
   Object.entries(speed)
     .map(([type, val]) =>
-      type === 'walk' ? `${val} ft.` : `${capitalize(type)} ${val} ft.`
+      type === 'walk'
+        ? `${val} ft.`
+        : `${capitalizeEach ? capitalize(type) : type} ${val} ft.`
     )
     .join(', ');
 

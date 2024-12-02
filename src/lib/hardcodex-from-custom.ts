@@ -1,5 +1,11 @@
 import type { Monster, Ability } from '@/types/monster';
-import { formatNumber, joinArray, sensesString, capitalize } from './utils';
+import {
+  formatNumber,
+  joinArray,
+  sensesString,
+  capitalize,
+  speedString,
+} from './utils';
 
 export const joinEntries = (obj: Record<string, string>): string =>
   Object.entries(obj)
@@ -55,13 +61,6 @@ export const mapToCard = (monster: Monster) => {
     legendary,
   } = monster;
 
-  const speedString = Object.entries(speed)
-    .map(([type, val]) =>
-      type === 'walk' ? `${val} ft.` : `${capitalize(type)} ${val} ft.`
-    )
-    .sort(([typeA], [typeB]) => typeA.localeCompare(typeB))
-    .join(', ');
-
   const columns: Array<string | number> = [
     name,
     `${size} ${type}`,
@@ -70,7 +69,7 @@ export const mapToCard = (monster: Monster) => {
     armor,
     average,
     formula,
-    speedString,
+    speedString(speed),
     str,
     dex,
     con,

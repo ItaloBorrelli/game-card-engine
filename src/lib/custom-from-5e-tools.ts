@@ -2,7 +2,7 @@ import type {
   Monster5eTools,
   Alignment as Alignment5eTools,
   Size as Size5eTools,
-} from '@/types/monster_5etools';
+} from '@/types/monster-5e-tools';
 import type { Monster, CRValue, Size } from '@/types/monster';
 import { mapAbilityScoreToSave } from './utils';
 
