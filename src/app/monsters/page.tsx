@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import type { Monster5eTools } from '@/types/monster-5e-tools';
+import type Monster5eTools from '@/types/monster-5e-tools';
 import { mapToCard } from '@/lib/hardcodex-from-custom';
 import { customFrom5eTools } from '@/lib/custom-from-5e-tools';
 import type React from 'react';

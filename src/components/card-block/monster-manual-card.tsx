@@ -1,4 +1,5 @@
-import type { Ability, Monster } from '@/types/monster';
+import type Monster from '@/types/monster';
+import type { Ability } from '@/types/monster';
 import type React from 'react';
 import styles from './monster-manual-card.module.css';
 import {

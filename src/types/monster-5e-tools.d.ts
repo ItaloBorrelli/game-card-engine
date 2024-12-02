@@ -22,7 +22,7 @@ type Trait = Ability & {
 type Action = Ability;
 type Legendary = Ability;
 
-export type Monster5eTools = {
+type Monster5eTools = {
   cardSize?: 'S' | 'L';
   name: string;
   size: Size[];
@@ -50,3 +50,5 @@ export type Monster5eTools = {
   action?: Action[];
   legendary?: Legendary[];
 };
+
+export default Monster5eTools;

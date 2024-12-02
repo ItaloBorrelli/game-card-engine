@@ -1,4 +1,4 @@
-import type { Monster } from '@/types/monster';
+import type Monster from '@/types/monster';
 import { clsx, type ClassValue } from 'clsx';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';

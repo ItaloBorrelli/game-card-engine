@@ -1,4 +1,5 @@
-import type { Monster, Ability } from '@/types/monster';
+import type { Ability } from '@/types/monster';
+import type Monster from '@/types/monster';
 import {
   formatNumber,
   joinArray,
