@@ -9,10 +9,11 @@ import monsters from 'content/default_monsters.json';
 import type React from 'react';
 import { useState } from 'react';
 
-type DownloadFileProps = { fileContent: Monster5eTools[] };
+type DownloadFileProps = { fileContent: Monster5eTools[]; className?: string };
 
 const DownloadFile: React.FC<DownloadFileProps> = ({
   fileContent,
+  className,
 }: DownloadFileProps) => {
   const handleDownload = () => {
     // Create file content
@@ -37,7 +38,11 @@ const DownloadFile: React.FC<DownloadFileProps> = ({
     URL.revokeObjectURL(url); // Release memory
   };
 
-  return <Button onClick={handleDownload}>Download Hardcodex File</Button>;
+  return (
+    <Button className={className} onClick={handleDownload}>
+      Download Hardcodex File
+    </Button>
+  );
 };
 
 const Page: React.FC = () => {
@@ -66,15 +71,17 @@ const Page: React.FC = () => {
     <>
       {fileContent ? (
         <div>
+          <div className="m-4 space-x-2">
+            <DownloadFile
+              fileContent={JSON.parse(fileContent) as Monster5eTools[]}
+            />
+            <Button onClick={() => setFileContent(null)}>Clear File</Button>
+          </div>
           {(JSON.parse(fileContent) as Monster5eTools[])
             .map(customFrom5eTools)
             .map((monster) => (
               <MonsterManualCard monster={monster} key={monster.name} />
             ))}
-          <DownloadFile
-            fileContent={JSON.parse(fileContent) as Monster5eTools[]}
-          />
-          <Button onClick={() => setFileContent(null)}>Clear File</Button>
         </div>
       ) : (
         <Input type="file" accept=".json" onChange={handleFileUpload} />
