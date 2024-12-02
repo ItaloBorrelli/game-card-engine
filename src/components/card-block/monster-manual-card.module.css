@@ -1,10 +1,23 @@
+body .monster {
+  font-family: "Scaly Sans", sans-serif;
+}
+
+em .monster {
+  font-family: "Scaly Sans", sans-serif;
+}
+
 .monster {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+  font-family: inherit;
   font-size: 62.5%;
   color: #000;
+}
+
+.monster span {
+  font-family: "Scaly Sans";
 }
 
 .warning {
@@ -12,6 +25,7 @@
   text-align: center;
   padding: 5px 0 0 0;
   font-style: italic;
+  font-family: inherit;
 }
 
 .orange {
@@ -19,6 +33,7 @@
   background-color: #e69a28;
   width: 100%;
   height: 6px;
+  font-family: inherit;
 }
 
 .yellow {
@@ -28,13 +43,14 @@
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
   background-image: url("./fond-mm-effet.png"), url("./fond-ph.jpg");
   background-repeat: no-repeat, repeat;
+  font-family: inherit;
 }
 
 .block {
   display: inline-block;
   min-width: 100%;
   padding: 10px 20px 0 20px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Mr Eaves Small Caps", Georgia, "Times New Roman", serif;
   font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
@@ -42,6 +58,7 @@
 
 .block h1 {
   padding: 0;
+  font-family: "Mr Eaves Small Caps";
   font-variant: small-caps;
   letter-spacing: 1px;
   color: #6d0000;
@@ -53,7 +70,7 @@
   padding: 1px 4px;
   background-color: #f0f0f0;
   color: #444;
-  font-family: arial, sans-serif;
+  font-family: inherit;
   font-size: 1rem;
   font-weight: normal;
   font-variant: none;
@@ -64,17 +81,20 @@
   padding: 2px 0 0px 0;
   text-align: left;
   font-style: italic;
+  font-family: inherit;
 }
 
 div.sansSerif svg {
   width: 100%;
   height: 5px;
+  font-family: inherit;
 }
 .sansSerif {
-  font-family: arial, sans-serif;
+  font-family: inherit;
 }
 .red {
   color: #6d0000;
+  font-family: inherit;
 }
 .stat {
   display: inline-block;
@@ -82,6 +102,7 @@ div.sansSerif svg {
   max-width: 55px;
   text-align: center;
   vertical-align: top;
+  font-family: inherit;
 }
 
 .col {
@@ -89,18 +110,21 @@ div.sansSerif svg {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 95px;
+  font-family: inherit;
 }
 .cols2 {
   column-count: 2;
   width: 990px;
   margin-left: auto;
   margin-right: auto;
+  font-family: inherit;
 }
 .cols1 {
   column-span: all;
   width: 990px;
   margin-left: auto;
   margin-right: auto;
+  font-family: inherit;
 }
 .rub {
   color: #6d0000;
@@ -108,6 +132,7 @@ div.sansSerif svg {
   border-bottom: 1px solid #b30303;
   font-size: 1.5rem;
   font-variant: small-caps;
+  font-family: inherit;
 }
 
 .content {
@@ -115,10 +140,12 @@ div.sansSerif svg {
   width: 490px;
   vertical-align: top;
   font-size: 1.2rem;
+  font-family: inherit;
 }
 
 .center {
   text-align: center;
+  font-family: inherit;
 }
 .new {
   font-size: 1.8rem;
@@ -128,6 +155,7 @@ div.sansSerif svg {
   color: white;
   padding: 4px;
   margin: 10px 0 10px 0;
+  font-family: inherit;
 }
 
 .ability {
@@ -136,4 +164,5 @@ div.sansSerif svg {
   border-bottom: 1px solid #b30303;
   font-size: 1.5rem;
   font-variant: small-caps;
+  font-family: inherit;
 }

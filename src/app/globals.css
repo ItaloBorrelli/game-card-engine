@@ -2,8 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Mr Eaves Small Caps";
+  src: url("./fonts/Mr Eaves/Mr Eaves Small Caps.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Nodesto Caps Condensed";
+  src: url("./fonts/Nodesto Caps Condensed/Nodesto Caps Condensed.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Scaly Sans";
+  src: url("./fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Scaly Sans";
+  src: url("./fonts/Scaly Sans/Scaly Sans Bold.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Scaly Sans";
+  src: url("./fonts/Scaly Sans/Scaly Sans Italic.otf") format("opentype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Scaly Sans Caps";
+  src: url("./fonts/Scaly Sans Caps/Scaly Sans Caps.otf") format("opentype");
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Scaly Sans", Arial, Helvetica, sans-serif;
 }
 
 @layer base {
