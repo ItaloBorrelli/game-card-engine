@@ -29,6 +29,7 @@ const entryMappings: Record<TagTypes, EntryMapping> = {
   hit: {
     postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
   },
+  note: { wrapper: 'em' },
   recharge: {
     postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
   },

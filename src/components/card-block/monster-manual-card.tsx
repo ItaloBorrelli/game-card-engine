@@ -61,11 +61,12 @@ const entryMappings: Record<TagTypes, EntryMapping> = {
   hit: {
     postProcessing: (text) => `${Number(text) > 0 ? '+' : ''}${text}`,
   },
+  note: { wrapper: 'em' },
   recharge: {
     postProcessing: (text) => `(Recharge ${text === '6' ? 6 : `${text}-6`})`,
   },
   skill: {},
-  spell: {},
+  spell: { wrapper: 'em' },
   status: {
     postProcessing: (text) => text.replace(/.*\|\|/, ''),
   },
@@ -163,71 +164,66 @@ const MonsterManualCard: React.FC<{ monster: Monster }> = ({
       ? spellcasting.map(spellCastingToAbility)
       : undefined;
 
-  if (name === 'Green Hag') {
-    console.log(allTraits);
-  }
   return (
-    <div className={styles.cols2}>
-      <div className={styles.monster}>
-        <div className={styles.block}>
-          <div className={styles.orange} />
-          <div className={styles.yellow}>
-            <>
-              <h1>{name}</h1>
-              <div className={styles.sansSerif}>
-                <div
-                  className={styles.type}
-                >{`${size.map(capitalize)} ${typeString(type)}, ${alignment}`}</div>
+    <div className={styles.monster}>
+      <div className={styles.block}>
+        <div className={styles.orange} />
+        <div className={styles.yellow}>
+          <>
+            <h1>{name}</h1>
+            <div className={styles.sansSerif}>
+              <div
+                className={styles.type}
+              >{`${size.map(capitalize)} ${typeString(type)}, ${alignment}`}</div>
+              <Separator />
+              <div className={styles.red}>
+                {stat('Armor Class', ac)}
+                <br />
+                {stat('Hit Points', `${hp.average} (${hp.formula})`)}
+                <br />
+                {stat('Speed', speedString(speed))}
                 <Separator />
-                <div className={styles.red}>
-                  {stat('Armor Class', ac)}
-                  <br />
-                  {stat('Hit Points', `${hp.average} (${hp.formula})`)}
-                  <br />
-                  {stat('Speed', speedString(speed))}
-                  <Separator />
-                  {createStatBlock('STR', str)}
-                  {createStatBlock('DEX', dex)}
-                  {createStatBlock('CON', con)}
-                  {createStatBlock('INT', int)}
-                  {createStatBlock('WIS', wis)}
-                  {createStatBlock('CHA', cha)}
-                  <Separator />
-                  {stat('Skills', joinRecord(skill, true))}
-                  <br />
-                  {stat('Senses', sensesString(passive, senses))}
-                  <br />
-                  {languages ? (
-                    <>
-                      {stat('Languages', joinArray(languages))}
-                      <br />
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                  {stat('Challenge', `${cr} (${formatNumber(xp)} XP)`)}
-                </div>
+                {createStatBlock('STR', str)}
+                {createStatBlock('DEX', dex)}
+                {createStatBlock('CON', con)}
+                {createStatBlock('INT', int)}
+                {createStatBlock('WIS', wis)}
+                {createStatBlock('CHA', cha)}
                 <Separator />
-                {allTraits ? allTraits.map(formatAbility) : <></>}
-                {action ? (
+                {stat('Skills', joinRecord(skill, true))}
+                <br />
+                {stat('Senses', sensesString(passive, senses))}
+                <br />
+                {languages ? (
                   <>
-                    <div className={styles.rub}>Actions</div>
-                    {action.map(formatAbility)}
+                    {stat('Languages', joinArray(languages))}
+                    <br />
                   </>
                 ) : (
                   <></>
                 )}
-                {legendary ? (
-                  <>
-                    <div className={styles.rub}>Legendary Actions</div>
-                    {legendary.map(formatAbility)}
-                  </>
-                ) : (
-                  <></>
-                )}
+                {stat('Challenge', `${cr} (${formatNumber(xp)} XP)`)}
               </div>
-            </>
-          </div>
+              <Separator />
+              {allTraits ? allTraits.map(formatAbility) : <></>}
+              {action ? (
+                <>
+                  <div className={styles.rub}>Actions</div>
+                  {action.map(formatAbility)}
+                </>
+              ) : (
+                <></>
+              )}
+              {legendary ? (
+                <>
+                  <div className={styles.rub}>Legendary Actions</div>
+                  {legendary.map(formatAbility)}
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </>
         </div>
       </div>
     </div>

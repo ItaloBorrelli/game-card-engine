@@ -1401,5 +1401,381 @@
         }
       ]
     }
+  },
+  {
+    "name": "Cambion",
+    "source": "a",
+    "token": {
+      "name": "Cambion",
+      "source": "MM"
+    },
+    "size": [
+      "M"
+    ],
+    "type": "fiend",
+    "alignment": [
+      "L",
+      "NX",
+      "C",
+      "E"
+    ],
+    "ac": [
+      {
+        "ac": 19,
+        "from": [
+          "{@item scale mail|phb}"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 82,
+      "formula": "11d8 + 33"
+    },
+    "speed": {
+      "walk": 30,
+      "fly": 60
+    },
+    "str": 18,
+    "dex": 18,
+    "con": 16,
+    "int": 14,
+    "wis": 12,
+    "cha": 16,
+    "save": {
+      "str": "+7",
+      "con": "+6",
+      "int": "+5",
+      "cha": "+6"
+    },
+    "skill": {
+      "deception": "+6",
+      "intimidation": "+6",
+      "perception": "+4",
+      "stealth": "+7"
+    },
+    "senses": [
+      "darkvision 60 ft."
+    ],
+    "passive": 14,
+    "resist": [
+      "cold",
+      "fire",
+      "lightning",
+      "poison",
+      {
+        "resist": [
+          "bludgeoning",
+          "piercing",
+          "slashing"
+        ],
+        "note": "from nonmagical attacks",
+        "cond": true
+      }
+    ],
+    "languages": [
+      "Abyssal",
+      "Common",
+      "Infernal"
+    ],
+    "cr": "5",
+    "spellcasting": [
+      {
+        "name": "Innate Spellcasting",
+        "type": "spellcasting",
+        "headerEntries": [
+          "The cambion's spellcasting ability is Charisma (spell save {@dc 14}). The cambion can innately cast the following spells, requiring no material components:"
+        ],
+        "daily": {
+          "1": [
+            "{@spell plane shift} (self only)"
+          ],
+          "3e": [
+            "{@spell alter self}",
+            "{@spell command}",
+            "{@spell detect magic}"
+          ]
+        },
+        "ability": "cha"
+      }
+    ],
+    "trait": [
+      {
+        "name": "Fiendish Blessing",
+        "entries": [
+          "The AC of the cambion includes its Charisma bonus."
+        ]
+      },
+      {
+        "name": "Temporary Statblock",
+        "entries": [
+          "{@note This statblock is a placeholder.}"
+        ]
+      }
+    ],
+    "action": [
+      {
+        "name": "Multiattack",
+        "entries": [
+          "The cambion makes two melee attacks or uses its Fire Ray twice."
+        ]
+      },
+      {
+        "name": "Spear",
+        "entries": [
+          "{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage, or 8 ({@damage 1d8 + 4}) piercing damage if used with two hands to make a melee attack, plus 3 ({@damage 1d6}) fire damage."
+        ]
+      },
+      {
+        "name": "Fire Ray",
+        "entries": [
+          "{@atk rs} {@hit 7} to hit, range 120 ft., one target. {@h}10 ({@damage 3d6}) fire damage."
+        ]
+      },
+      {
+        "name": "Fiendish Charm",
+        "entries": [
+          "One humanoid the cambion can see within 30 feet of it must succeed on a {@dc 14} Wisdom saving throw or be magically {@condition charmed} for 1 day. The {@condition charmed} target obeys the cambion's spoken commands. If the target suffers any harm from the cambion or another creature or receives a suicidal command from the cambion, the target can repeat the saving throw, ending the effect on itself on a success. If a target's saving throw is successful, or if the effect ends for it, the creature is immune to the cambion's Fiendish Charm for the next 24 hours."
+        ]
+      }
+    ],
+    "attachedItems": [
+      "spear|phb"
+    ],
+    "senseTags": [
+      "D"
+    ],
+    "actionTags": [
+      "Multiattack"
+    ],
+    "languageTags": [
+      "AB",
+      "C",
+      "I"
+    ],
+    "damageTags": [
+      "F",
+      "P"
+    ],
+    "damageTagsSpell": [
+      "B",
+      "P",
+      "S"
+    ],
+    "spellcastingTags": [
+      "I"
+    ],
+    "miscTags": [
+      "MLW",
+      "MW",
+      "RW",
+      "THW"
+    ],
+    "conditionInflict": [
+      "charmed"
+    ],
+    "conditionInflictSpell": [
+      "prone"
+    ],
+    "savingThrowForced": [
+      "wisdom"
+    ],
+    "savingThrowForcedSpell": [
+      "charisma",
+      "wisdom"
+    ]
+  },
+  {
+    "name": "Lamia",
+    "source": "a",
+    "page": 201,
+    "size": [
+      "L"
+    ],
+    "type": "monstrosity",
+    "alignment": [
+      "C",
+      "E"
+    ],
+    "ac": [
+      {
+        "ac": 13,
+        "from": [
+          "natural armor"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 97,
+      "formula": "13d10 + 26"
+    },
+    "speed": {
+      "walk": 30
+    },
+    "str": 16,
+    "dex": 13,
+    "con": 15,
+    "int": 14,
+    "wis": 15,
+    "cha": 16,
+    "skill": {
+      "deception": "+7",
+      "insight": "+4",
+      "stealth": "+3"
+    },
+    "senses": [
+      "darkvision 60 ft."
+    ],
+    "passive": 12,
+    "languages": [
+      "Abyssal",
+      "Common"
+    ],
+    "cr": "4",
+    "spellcasting": [
+      {
+        "name": "Innate Spellcasting",
+        "type": "spellcasting",
+        "headerEntries": [
+          "The lamia's innate spellcasting ability is Charisma (spell save {@dc 13}). It can innately cast the following spells, requiring no material components."
+        ],
+        "will": [
+          "{@spell disguise self} (any humanoid form)",
+          "{@spell major image}"
+        ],
+        "daily": {
+          "1": [
+            "{@spell geas}"
+          ],
+          "3e": [
+            "{@spell charm person}",
+            "{@spell mirror image}",
+            "{@spell scrying}",
+            "{@spell suggestion}"
+          ]
+        },
+        "ability": "cha"
+      }
+    ],
+    "action": [
+      {
+        "name": "Multiattack",
+        "entries": [
+          "The lamia makes two attacks: one with its claws and one with its dagger or Intoxicating Touch."
+        ]
+      },
+      {
+        "name": "Claws",
+        "entries": [
+          "{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d10 + 3}) slashing damage."
+        ]
+      },
+      {
+        "name": "Dagger",
+        "entries": [
+          "{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+        ]
+      },
+      {
+        "name": "Intoxicating Touch",
+        "entries": [
+          "{@atk ms} {@hit 5} to hit, reach 5 ft., one creature. {@h}The target is magically cursed for 1 hour. Until the curse ends, the target has disadvantage on Wisdom saving throws and all ability checks."
+        ]
+      }
+    ],
+    "environment": [
+      "desert"
+    ],
+    "soundClip": {
+      "type": "external",
+      "url": "https://5e.tools/audio/bestiary/lamia.mp3"
+    },
+    "attachedItems": [
+      "dagger|phb"
+    ],
+    "senseTags": [
+      "D"
+    ],
+    "actionTags": [
+      "Multiattack"
+    ],
+    "languageTags": [
+      "AB",
+      "C"
+    ],
+    "damageTags": [
+      "P",
+      "S"
+    ],
+    "damageTagsSpell": [
+      "Y"
+    ],
+    "spellcastingTags": [
+      "I"
+    ],
+    "miscTags": [
+      "CUR",
+      "MLW",
+      "MW"
+    ],
+    "savingThrowForcedSpell": [
+      "wisdom"
+    ],
+    "hasFluff": true,
+    "hasFluffImages": true,
+    "token": {
+      "name": "Lamia",
+      "source": "MM"
+    },
+    "fluff": {
+      "name": "Lamia",
+      "source": "MM",
+      "entries": [
+        {
+          "type": "entries",
+          "entries": [
+            {
+              "type": "entries",
+              "entries": [
+                "Ruined desert cities and the tombs of forgotten monarchs make perfect lairs for the wicked lamias. These decadent monsters take what has been forgotten and make it the seat of their hedonistic rule, surrounding themselves with sycophants. Lamias rely on {@creature Jackalwere||jackalweres} to perform various tasks, sending them across the wastes to capture slaves or steal treasures from caravans, encampments, or villages, concealed by the lamia's magic as they attack.",
+                "A lamia has a beautiful humanoid upper body that merges into a powerful four-legged leonine form. Its vicious black claws speak to its predatory nature, as does its hunger for torture and humanoid flesh.",
+                {
+                  "name": "Tyrants of Pleasure",
+                  "type": "entries",
+                  "entries": [
+                    "Lamias adorn their crumbling havens with finery stolen from passing caravans, then use magic to further accentuate their lairs, masking decay with illusion. A lair's breathtaking gardens, finely decorated apartments, and numerous slaves seem at odds with its remoteness and state of ruin.",
+                    "Using its intoxicating touch, a lamia weakens the minds of its enemies, making them more susceptible to its enchantment spells and turning them into its slaves. Those it beguiles with {@spell geas} spells are pitted against each other in elaborate contests for the lamia's amusement."
+                  ]
+                },
+                {
+                  "name": "Vain Predators",
+                  "type": "entries",
+                  "entries": [
+                    "Always anxious to gain more wealth and slaves, a lamia uses a pool of water or a mirror in conjunction with a {@spell scrying} spell to view its domain. A lamia uses this power to watch over trade routes and nearby settlements, or to seek out objects and creatures it fancies.",
+                    "Lamias are particularly fond of seeking out adventurers with pure hearts to seduce and corrupt to evil, savoring the destruction of their virtue. They use their magic to lure potential victims to their lairs, relying on illusion and their thralls to capture hapless foes. Lamias prize beauty and strength above all else, however. Any prisoner that falls short of their esteem becomes the main course in a horrible feast, or is set free to die while wandering the wastes.",
+                    "As long as they have slaves to face their enemies, lamias fight from the fringes, beguiling foes with magic if they can. A lamia pressed into melee never stays there for long, shredding flesh with claw and dagger before springing away to safety."
+                  ]
+                },
+                {
+                  "name": "Minions of Graz'zt",
+                  "type": "entries",
+                  "entries": [
+                    "The demon lord Graz'zt creates lamias from his mortal servants, granting them immortality in return for monstrous power and an oath of fealty. Graz'zt sometimes tasks lamias with guarding locations important to him, but lamias in his service remain free to spread their evil as they see fit."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "type": "image",
+          "href": {
+            "type": "internal",
+            "path": "bestiary/MM/Lamia.webp"
+          }
+        }
+      ]
+    }
   }
 ]

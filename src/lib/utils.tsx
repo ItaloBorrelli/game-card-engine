@@ -12,6 +12,11 @@ export const mapAttackType = (abbrev: string) =>
     mw: 'Melee Weapon Attack',
     rw: 'Ranged Weapon Attack',
     'mw,rw': 'Melee or Ranged Weapon Attack',
+    'rw,mw': 'Melee or Ranged Weapon Attack',
+    ms: 'Melee Spell Attack',
+    rs: 'Ranged Spell Attack',
+    'ms,rs': 'Melee or Ranged Spell Attack',
+    'rs,ms': 'Melee or Ranged Spell Attack',
   })[abbrev] ?? 'Attack';
 
 export type TagTypes =
@@ -23,6 +28,7 @@ export type TagTypes =
   | 'dice'
   | 'h'
   | 'hit'
+  | 'note'
   | 'recharge'
   | 'skill'
   | 'spell'
